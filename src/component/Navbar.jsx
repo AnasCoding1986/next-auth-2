@@ -29,6 +29,10 @@ const Navbar = () => {
             title: "users",
             path: "/users"
         },
+        {
+            title: "allSegment",
+            path: "/allSegment"
+        },
     ]
 
     if (pathName.includes("/dash")) {
