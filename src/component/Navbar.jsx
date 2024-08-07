@@ -31,6 +31,10 @@ const Navbar = () => {
         },
     ]
 
+    if (pathName.includes("/dash")) {
+        return <div className='bg-lime-600 text-4xl'>This is dash navbar</div>
+    }
+
     return (
         <nav className='flex justify-between items-center p-4'>
             <h2 className='text-xl font-bold'>Next</h2>
