@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const getPosts = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/posts`)
     const data = await res.json()
     return data
 }

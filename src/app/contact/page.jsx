@@ -6,7 +6,16 @@ export const metadata = {
     description: 'about- meta data - thata',
   }
 
-const page = () => {
+  const getTime = async () => {
+    const res = await fetch('http://localhost:3000/time', { next: { revalidate: 10 } });
+    const data = await res.json();
+    return data.currentTime;
+  }
+
+const page = async () => {
+
+    const currentTimeS = await getTime();
+
     return (
         <div>
             <h3>This is contact page</h3>
@@ -18,6 +27,10 @@ const page = () => {
                     ))
                 }
             </div>
+
+            <h3>Time: {currentTimeS}</h3>
+
+
         </div>
     );
 };
