@@ -6,6 +6,19 @@ const getSPosts = async (id) => {
     return data
 }
 
+export async function generateMetadata({ params}) {
+    // read route params
+    const id = params.id
+   
+    // fetch data
+    const product = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then((res) => res.json())
+   
+    return {
+      title: product.title,
+      description: product.body
+    }
+  }
+
 const page = async ({params}) => {
 
     const {id,title,body} = await getSPosts(params.id);
