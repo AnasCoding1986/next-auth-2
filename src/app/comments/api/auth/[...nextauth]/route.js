@@ -8,8 +8,9 @@ const handler = NextAuth({
         providers: [
             CredentialsProvider({
                 credentials: {
-                    email: { label: "Username", type: "text", required: true, placeholder: "Your Email" },
-                    password: { label: "Password", type: "password", required: true,placeholder: "Your Password" }
+                    email: { label: "Username", type: "text", required: true, placeholder: "Your Email", name: "email" },
+                    password: { label: "Password", type: "password", required: true,placeholder: "Your Password", name: "password" },
+                    username: { label: "User Name", type: "text", required: true,placeholder: "Your Name", name: "username" },
                 },
                 async authorize(credentials) {
 
