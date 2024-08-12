@@ -15,9 +15,9 @@ export const authOption = {
             },
             async authorize(credentials) {
 
-                const {email,password} = credentials;
-                console.log(email,password);
-                
+                const { email, password } = credentials;
+                console.log(email, password);
+
 
                 if (!credentials) {
                     return null;
@@ -25,7 +25,7 @@ export const authOption = {
                 if (email) {
                     const currentUser = users.find((user) => user.email === email);
                     console.log(currentUser);
-                    
+
                     if (currentUser) {
                         if (currentUser.password === password) {
                             return currentUser
@@ -35,39 +35,62 @@ export const authOption = {
                 return null;
             }
         })
-    ]
+    ],
+
+    callbacks: {
+
+        async jwt({ token, account, user }) {
+            // Persist the OAuth access_token and or the user id to the token right after signin
+            if (account) {
+                token.type = user.type
+            }
+            return token
+        },
+
+        async session({ session, token }) {
+            session.user.type = token.type;
+            return session
+        },
+
+
+    }
+
 };
 
 const handler = NextAuth(authOption);
 
-const users =[
+const users = [
     {
         id: 1,
         name: "anas",
         email: "a@a.com",
         type: "admin",
-        password: "password"
+        password: "password",
+        image: "https://picsum.photos/200/300"
     },
     {
         id: 2,
         name: "anas2",
         email: "b@b.com",
         type: "admin",
-        password: "password"
+        password: "password",
+        image: "https://picsum.photos/200/300"
     },
     {
         id: 3,
         name: "anas3",
         email: "c@c.com",
         type: "user",
-        password: "password"
+        password: "password",
+        image: "https://picsum.photos/200/300"
     },
     {
         id: 4,
         name: "anas4",
         email: "d@d.com",
         type: "user",
-        password: "password"
+        password: "password",
+        image: "https://picsum.photos/200/300"
     },
 ];
 
