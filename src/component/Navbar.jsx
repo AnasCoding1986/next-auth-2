@@ -59,7 +59,7 @@ const Navbar = () => {
                     </li>)
                 }
             </ul>
-            {session.status === "authenticated" ? <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button> : <button onClick={handler} className='bg-red-500 text-4xl p-4'>Logout</button>}
+            {!(session.status === "authenticated") ? <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button> : <button onClick={handler} className='bg-red-500 text-4xl p-4'>Logout</button>}
         </nav>
     );
 };
