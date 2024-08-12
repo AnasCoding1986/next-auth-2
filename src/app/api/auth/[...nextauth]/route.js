@@ -5,6 +5,7 @@ export const authOption = {
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
     session: {
         strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60,
     },
     providers: [
         CredentialsProvider({
@@ -14,22 +15,24 @@ export const authOption = {
             },
             async authorize(credentials) {
 
-                // const {email,password} = credentials;
-                // console.log(email,password);
+                const {email,password} = credentials;
+                console.log(email,password);
                 
 
                 if (!credentials) {
                     return null;
                 }
-                // if (email) {
-                //     const currentUser = users.find((user) => user.email === email);
-                //     if (currentUser) {
-                //         if (currentUser.password === password) {
-                //             return currentUser
-                //         }
-                //     }
-                // }
-                return true;
+                if (email) {
+                    const currentUser = users.find((user) => user.email === email);
+                    console.log(currentUser);
+                    
+                    if (currentUser) {
+                        if (currentUser.password === password) {
+                            return currentUser
+                        }
+                    }
+                }
+                return null;
             }
         })
     ]
@@ -37,31 +40,35 @@ export const authOption = {
 
 const handler = NextAuth(authOption);
 
-// const users =[
-//     {
-//         id: 1,
-//         name: "anas",
-//         email: "a@a.com",
-//         password: "password"
-//     },
-//     {
-//         id: 2,
-//         name: "anas2",
-//         email: "b@b.com",
-//         password: "password"
-//     },
-//     {
-//         id: 3,
-//         name: "anas3",
-//         email: "c@c.com",
-//         password: "password"
-//     },
-//     {
-//         id: 4,
-//         name: "anas4",
-//         email: "d@d.com",
-//         password: "password"
-//     },
-// ];
+const users =[
+    {
+        id: 1,
+        name: "anas",
+        email: "a@a.com",
+        type: "admin",
+        password: "password"
+    },
+    {
+        id: 2,
+        name: "anas2",
+        email: "b@b.com",
+        type: "admin",
+        password: "password"
+    },
+    {
+        id: 3,
+        name: "anas3",
+        email: "c@c.com",
+        type: "user",
+        password: "password"
+    },
+    {
+        id: 4,
+        name: "anas4",
+        email: "d@d.com",
+        type: "user",
+        password: "password"
+    },
+];
 
 export { handler as GET, handler as POST }

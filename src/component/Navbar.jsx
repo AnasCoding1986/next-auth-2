@@ -9,6 +9,8 @@ const Navbar = () => {
     const pathName = usePathname();
     const router = useRouter();
     const session = useSession();
+    console.log(session);
+    
 
     const handler = () => {
         router.push("/about")
