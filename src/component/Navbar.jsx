@@ -1,5 +1,5 @@
 "use client";
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
@@ -61,7 +61,11 @@ const Navbar = () => {
                     </li>)
                 }
             </ul>
-            {!(session.status === "authenticated") ? <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button> : <button onClick={handler} className='bg-red-500 text-4xl p-4'>Logout</button>}
+            {!(session.status === "authenticated") 
+            ? <Link href="http://localhost:3000/api/auth/signin">
+            <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button>
+            </Link> 
+            : <button onClick={() => signOut()} className='bg-red-500 text-4xl p-4'>Logout</button>}
         </nav>
     );
 };
