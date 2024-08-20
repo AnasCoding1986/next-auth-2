@@ -2,7 +2,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 
 
 let db;
- const connectDB = async () => {
+export const connectDB = async () => {
     if (db) {
         return db
     }
