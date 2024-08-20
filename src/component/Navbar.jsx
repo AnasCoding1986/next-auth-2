@@ -10,7 +10,7 @@ const Navbar = () => {
     const router = useRouter();
     const session = useSession();
     console.log(session);
-    
+
 
     const handler = () => {
         router.push("/about")
@@ -61,11 +61,21 @@ const Navbar = () => {
                     </li>)
                 }
             </ul>
-            {!(session.status === "authenticated") 
-            ? <Link href="http://localhost:3000/api/auth/signin">
-            <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button>
-            </Link> 
-            : <button onClick={() => signOut()} className='bg-red-500 text-4xl p-4'>Logout</button>}
+            {!(session.status === "authenticated")
+                ?
+                <div>
+                    <div>
+                        <Link href="http://localhost:3000/api/auth/signin">
+                            <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Login</button>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link href="http://localhost:3000/api/auth/signup">
+                            <button onClick={handler} className='bg-orange-300 text-4xl p-4'>Signup</button>
+                        </Link>
+                    </div>
+                </div>
+                : <button onClick={() => signOut()} className='bg-red-500 text-4xl p-4'>Logout</button>}
         </nav>
     );
 };
