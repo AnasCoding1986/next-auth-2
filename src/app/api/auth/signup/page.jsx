@@ -10,11 +10,11 @@ const RegisterPage = () => {
         // Add your registration logic here
         const newUser = {
             name: e.target.name.value,
-            name: e.target.email.value,
-            name: e.target.password.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
         }
 
-        const resp = await fetch('http://localhost:3000/api/auth/signup',{
+        const resp = await fetch('http://localhost:3000/api/auth/signup/newUser',{
             method: 'POST',
             body: JSON.stringify(newUser),
             headers:{
