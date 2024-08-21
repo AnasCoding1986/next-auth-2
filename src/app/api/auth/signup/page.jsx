@@ -1,18 +1,34 @@
 "use client";
 
+import { POST } from "@/app/comments/route";
+
 const RegisterPage = () => {
 
-    const handleRegister = (e) => {
+    const handleRegister = async(e) => {
         e.preventDefault(); // Prevent the default form submission behavior
         console.log("Welcome to registration");
         // Add your registration logic here
+        const newUser = {
+            name: e.target.name.value,
+            name: e.target.email.value,
+            name: e.target.password.value,
+        }
+
+        const resp = await fetch('http://localhost:3000/api/auth/signup',{
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers:{
+                'contetnt-type': 'application/json'
+            }
+        })
+
+        console.log(resp);
+        
+
     }
 
+
     return (
-
-
-
-
         <div className="text-center h-screen py-3">
 
             <h1 className="text-2xl font-semibold py-5">Sign up Here</h1>
