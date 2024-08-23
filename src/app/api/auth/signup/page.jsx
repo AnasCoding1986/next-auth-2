@@ -12,15 +12,15 @@ const RegisterPage = () => {
             name: e.target.name.value,
             email: e.target.email.value,
             password: e.target.password.value,
-            password: e.target.image.value,
-            password: e.target.type.value,
+            image: e.target.image.value,
+            type: e.target.type.value,
         }
 
         const resp = await fetch('http://localhost:3000/api/auth/signup/newUser',{
             method: 'POST',
             body: JSON.stringify(newUser),
             headers:{
-                'contetnt-type': 'application/json'
+                'content-type': 'application/json'
             }
         })
 
