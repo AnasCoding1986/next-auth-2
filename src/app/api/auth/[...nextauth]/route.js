@@ -26,9 +26,9 @@ export const authOption = {
                 if (email) {
 
                     const db = await connectDB();
-                    const currentUser = await db.collection('users').findOne({email});
+                    const currentUser = await db.collection('users').findOne({ email });
                     console.log(currentUser);
-                    
+
 
                     // const currentUser = users.find((user) => user.email === email);
                     // console.log(currentUser);
@@ -41,7 +41,11 @@ export const authOption = {
                 }
                 return null;
             }
-        })
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        }),
     ],
 
     callbacks: {
