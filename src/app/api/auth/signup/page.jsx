@@ -12,6 +12,8 @@ const RegisterPage = () => {
             name: e.target.name.value,
             email: e.target.email.value,
             password: e.target.password.value,
+            password: e.target.image.value,
+            password: e.target.type.value,
         }
 
         const resp = await fetch('http://localhost:3000/api/auth/signup/newUser',{
@@ -54,6 +56,28 @@ const RegisterPage = () => {
                             <span>Password</span>
                         </label><br />
                         <input type="password" name='password' placeholder="password" className="input bg-slate-400 input-bordered" required />
+                    </div>
+                    <div>
+                        <label>
+                            <span>Image</span>
+                        </label><br />
+                        <input type="text" name='image' placeholder="Image url" className="input bg-slate-400 input-bordered" required />
+                    </div>
+                    <div>
+                        <label>
+                            <span>Type</span>
+                        </label><br />
+                        <select
+                        className="input bg-slate-400 input-bordered"
+                        name="type"
+                        placeholder="user type"
+                        >
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                        <option value="moderator">Moderator</option>
+                        
+
+                        </select>
                     </div>
                     <div className="mt-6">
                         <button type="submit" className="p-3 rounded-md bg-cyan-600 text-white font-semibold">Register</button>
